@@ -1,0 +1,5 @@
+transformers
+peft
+torch
+tkinter
+logging
