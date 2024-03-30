@@ -1,2 +1,5 @@
 # Model-Tools
-This repository includes various utility functions designed to comprehend aspects such as the distribution of weight matrices and similarities, which may prove beneficial for tasks such as merging models.
+This repository includes an assorted toolkit for model diagnostics, test & validation, as well overall convenience tools that focus on streamlining common operations.
+
+
+
