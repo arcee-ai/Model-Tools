@@ -70,8 +70,17 @@ or [if Linux] from the OS interface GUI through a CLI window and follow the step
 </table>
 
 <p align="center">
-In summary, these steps will guide you through the model evaluation process.
 </p>
+
+### Prerequisites:
+EvalGUI requires EleutherAI's lm-evaluation-harness to be properly installed in the same python environment.
+[EleutherAI lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness)
+It can be installed simply by following this step:
+```
+git clone https://github.com/EleutherAI/lm-evaluation-harness
+cd lm-evaluation-harness
+pip install -e .
+```
 
 ---
 
