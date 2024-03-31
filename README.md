@@ -40,8 +40,7 @@ LoRAs can however be merged with any pretrained model based on the same architec
 ### Model Evaluation GUI
 
 <p align="center">
-To use Evaluation GUI, aka evalgui.py, simply run the script in a Python environment [if Windows]
-  
+To use Evaluation GUI, aka evalgui.py, simply run the script in a Python environment [if Windows]<BR>
 or [if Linux] from the OS interface GUI through a CLI window and follow the steps below:
 </p>
 
