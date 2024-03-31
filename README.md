@@ -88,7 +88,24 @@ os.environ['CUDA_LAUNCH_BLOCKING'] = "True"
 os.environ['HF_DATASETS_ALLOW_CODE_EXECUTION'] = "True"
 os.environ['ALLOW_REMOTE_CODE'] = "True"
 ```
-Also, this is an Alpha version of the Model Evaluation GUI. Several Quality of Life convenience features are planned and being implemented for the next release(s)
+This is an Alpha version of the Model Evaluation GUI. Several Quality of Life convenience features are planned and being implemented for the next release(s).
+For now, a few key settings are hardcoded into the script for simplicity. It may be valuable to reduce batch size from 24 to the recommended 8-16. The higher the
+bath size the faster the process of evaluation however, too high a number may cause Cuda to run into out of memory errors. Also, the 'limit' argument should be
+removed entirely if one is ready to do entire evaluation sets against their model of choice. 300 was selected so evalgui.py provides a fairly light and fast sampling
+for the sake of determing roughly where a model stands in performance, this is for the sake of rapid iteration [especially when testing performance on different model
+merges and merge techniques]. The next release will bring these options out from under the hood and into the GUI (for now, simply edit the python script to suit your needs).
+
+```
+    command = [
+        "lm_eval",
+        "--model", "hf",
+        "--tasks", ",".join(selected_tasks),
+        "--batch_size", "24",
+        "--limit", "300",
+        "--device", "cuda:0",
+        "--model_args", f"pretrained={model_folder},load_in_4bit=True"
+    ]
+```
 
 
 ---
