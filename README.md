@@ -6,6 +6,7 @@ This repository is an assorted toolkit of python scripts and systems designed fo
 
 ## Table of Contents:
 - [EasyPEFTGUIPro](#easypeftguipro)
+- [Model Evaluation GUI](#Model Evaluation GUI)
 - [More Tools...](#more-tools)
 
 ---
