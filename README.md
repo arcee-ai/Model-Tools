@@ -72,7 +72,7 @@ or [if Linux] from the OS interface GUI through a CLI window and follow the step
 <p align="center">
 </p>
 
-### Prerequisites:
+#### Prerequisites:
 EvalGUI requires EleutherAI's lm-evaluation-harness to be properly installed in the same python environment.
 [EleutherAI lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness)
 It can be installed simply by following this step:
