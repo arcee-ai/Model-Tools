@@ -45,8 +45,8 @@ Follow the steps below for evaluating your model using the Evaluation GUI.
 <p align="center">
 <table>
   <tr>
-    <td><img src="media/evalgui/1_modelselect.png" width="300" align="center"/></td>
-    <td><img src="media/evalgui/2_evalselect.png" height="225" align="center"/></td> <!-- Adjust height to match the adjacent image -->
+    <td><center><img src="media/evalgui/1_modelselect.png" width="300"/></center>center></td>
+    <td><center><img src="media/evalgui/2_evalselect.png" height="225"/></center></td> <!-- Adjust height to match the adjacent image -->
   </tr>
   <tr>
     <td align="center">Select Model Folder</td>
