@@ -38,11 +38,19 @@ LoRAs can however be merged with any pretrained model based on the same architec
 
 ### Evaluation GUI
 
-![model select](media/evalgui/1_modelselect.png)
-![evaluation select](media/evalgui/2_evalselect.png)
-![evaluation process](media/evalgui/3_evalprocess.png)
-![eval saved notification](media/evalgui/4_evalnotification.png)
-![eval results](media/evalgui/5_evalresults.png)
+# Model Evaluation Workflow
+
+Follow the steps below for evaluating your model using the Evaluation GUI.
+
+| Step | Screenshot | Description |
+|------|------------|-------------|
+| Model Selection | ![model select](media/evalgui/1_modelselect.png) | Select the model for evaluation. |
+| Evaluation Criteria Selection | ![evaluation select](media/evalgui/2_evalselect.png) | Choose the evaluation criteria. |
+| Evaluation Process | ![evaluation process](media/evalgui/3_evalprocess.png) | Monitor the evaluation process. |
+| Evaluation Saved Notification | ![eval saved notification](media/evalgui/4_evalnotification.png) | Notification upon successful evaluation save. |
+| Evaluation Results | ![eval results](media/evalgui/5_evalresults.png) | Review the final evaluation results. |
+
+
 
 ---
 
