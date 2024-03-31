@@ -36,40 +36,42 @@ LoRAs can however be merged with any pretrained model based on the same architec
 
 ---
 
-### Evaluation GUI
-
 # Model Evaluation Workflow
 
+<p align="center">
 Follow the steps below for evaluating your model using the Evaluation GUI.
+</p>
 
+<p align="center">
 <table>
   <tr>
     <td><img src="media/evalgui/1_modelselect.png" width="300"/></td>
-    <td><img src="media/evalgui/2_evalselect.png" width="300"/></td>
+    <td><img src="media/evalgui/2_evalselect.png" height="225"/></td> <!-- Adjust height to match the adjacent image -->
   </tr>
   <tr>
-    <td>Select Model Folder</td>
-    <td>Select Eval Sets</td>
+    <td align="center">Select Model Folder</td>
+    <td align="center">Select Eval Sets</td>
   </tr>
   <tr>
     <td><img src="media/evalgui/3_evalprocess.png" width="300"/></td>
     <td><img src="media/evalgui/4_evalnotification.png" width="300"/></td>
   </tr>
   <tr>
-    <td>Evaluation Process Continues in CLI</td>
-    <td>Notification Eval Results Saved</td>
+    <td align="center">Evaluation Process Continues in CLI</td>
+    <td align="center">Notification Eval Results Saved</td>
   </tr>
   <tr>
     <td colspan="2"><img src="media/evalgui/5_evalresults.png" width="600"/></td>
   </tr>
   <tr>
-    <td colspan="2">Example Evaluation Results</td>
+    <td colspan="2" align="center">Example Evaluation Results</td>
   </tr>
 </table>
+</p>
 
+<p align="center">
 In summary, these steps will guide you through the model evaluation process.
-
-
+</p>
 
 ---
 
