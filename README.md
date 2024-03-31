@@ -5,11 +5,12 @@ This repository is an assorted toolkit of python scripts and systems designed fo
 ---
 
 ## Table of Contents
+---
 - [EasyPEFTGUIPro](#easypeftguipro)
 - [More Tools...](#more-tools)
 
 ---
----
+
 
 ### EasyPEFTGUIPro
 
