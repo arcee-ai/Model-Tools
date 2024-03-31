@@ -42,8 +42,8 @@ LoRAs can however be merged with any pretrained model based on the same architec
 
 Follow the steps below for evaluating your model using the Evaluation GUI.
 
-| Step | Screenshot | Description |
-|------|------------|-------------|
+| Step | Screenshot |
+|------|------------|
 | Select Model Folder | ![model select](media/evalgui/1_modelselect.png) |
 | Select Eval Sets | ![evaluation select](media/evalgui/2_evalselect.png) |
 | Evaluation Process Continues in CLI | ![evaluation process](media/evalgui/3_evalprocess.png) |
