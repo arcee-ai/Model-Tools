@@ -82,7 +82,7 @@ cd lm-evaluation-harness
 pip install -e .
 ```
 #### Caveats to Consider and Way Forward
-These variables are set for the duration of the script's execution to allow evaluations that require custom code to run properly to run unhindered.
+These variables are set for the duration of the script's execution to allow evaluations that require custom code to run unhindered.
 Explicitly telegraphing this for users who have security concerns (these lines can simply be deleted from the script and most should still run fine).
 ```
 os.environ['CUDA_LAUNCH_BLOCKING'] = "True"
