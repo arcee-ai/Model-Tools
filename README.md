@@ -65,7 +65,7 @@ or [if Linux] from the OS interface GUI through a CLI window and follow the step
     <td colspan="2" align="center"><img src="media/evalgui/5_evalresults.png" width="600"/></td>
   </tr>
   <tr>
-    <td colspan="2" align="center">5. When a Model's evaluations are complete, a file is saved under the name 'model name, date, and evals run.txt.'</td>
+    <td colspan="2" align="center">5. When a Model's evals are finished, a file is saved under the name 'model name, date, and evals run.txt.'</td>
   </tr>
 </table>
 
