@@ -65,7 +65,7 @@ or [if Linux] from the OS interface GUI through a CLI window and follow the step
     <td colspan="2" align="center"><img src="media/evalgui/5_evalresults.png" width="600"/></td>
   </tr>
   <tr>
-    <td colspan="2" align="center">When a Language Model's evaluations are complete, a text file is generated under the name 'model name, date, and evals run.txt'</td>
+    <td colspan="2" align="center">When a Model's evaluations are complete, a text file is generated under the name 'model name, date, and evals run.txt.'</td>
   </tr>
 </table>
 
