@@ -75,12 +75,21 @@ or [if Linux] from the OS interface GUI through a CLI window and follow the step
 #### Prerequisites:
 EvalGUI requires EleutherAI's lm-evaluation-harness to be properly installed in the same python environment.
 [EleutherAI lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness)
-It can be installed simply by following this step:
+can be installed simply by following this step:
 ```
 git clone https://github.com/EleutherAI/lm-evaluation-harness
 cd lm-evaluation-harness
 pip install -e .
 ```
+#### Caveats to Consider and Way Forward
+These variables are set for the duration of the script's execution to allow evaluations that require custom code to run properly to run unhindered.
+```
+os.environ['CUDA_LAUNCH_BLOCKING'] = "True"
+os.environ['HF_DATASETS_ALLOW_CODE_EXECUTION'] = "True"
+os.environ['ALLOW_REMOTE_CODE'] = "True"
+```
+Also, this is an Alpha version of the Model Evaluation GUI. Several Quality of Life convenience features are planned and being implemented for the next release(s)
+
 
 ---
 
