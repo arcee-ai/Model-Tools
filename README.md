@@ -10,7 +10,6 @@ This repository is an assorted toolkit of python scripts and systems designed fo
 
 ---
 
-
 ### EasyPEFTGUIPro
 
 `EasyPeftGUIPro` is designed to simplify the process of fusing a language model with a compatible LoRA, then saving the resulting model to a user's directory of choice.
@@ -34,6 +33,16 @@ This repository is an assorted toolkit of python scripts and systems designed fo
 This script relies on the `tkinter` library for interactive menus. An OS with a GUI interface is required.
 LoRAs made for a different model architecture or B number of parameters than the base language model selected will not successfully merge.
 LoRAs can however be merged with any pretrained model based on the same architecture and B of parameter size.
+
+---
+
+### Evaluation GUI
+
+![model select](media/evalgui/1_modelselect.png)
+![evaluation select](media/evalgui/2_evalselect.png)
+![evaluation process](media/evalgui/3_evalprocess.png)
+![eval saved notification](media/evalgui/4_evalnotification.png)
+![eval results](media/evalgui/5_evalresults.png)
 
 ---
 
