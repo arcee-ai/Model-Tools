@@ -50,22 +50,22 @@ or [if Linux] from the OS interface GUI through a CLI window and follow the step
     <td align="center"><img src="media/evalgui/2_evalselect.png" height="225"/></td>
   </tr>
   <tr>
-    <td align="center">Select Model Folder</td>
-    <td align="center">Select Eval Sets</td>
+    <td align="center">1. Run Script, Select Model Folder</td>
+    <td align="center">2. Select Eval Sets</td>
   </tr>
   <tr>
     <td align="center"><img src="media/evalgui/3_evalprocess.png" width="300"/></td>
     <td align="center"><img src="media/evalgui/4_evalnotification.png" width="300"/></td>
   </tr>
   <tr>
-    <td align="center">Evaluation Process Continues in CLI</td>
-    <td align="center">Notification Eval Results Saved</td>
+    <td align="center">3. Evaluation Process Continues in CLI</td>
+    <td align="center">4. Notification Eval Results Saved</td>
   </tr>
   <tr>
     <td colspan="2" align="center"><img src="media/evalgui/5_evalresults.png" width="600"/></td>
   </tr>
   <tr>
-    <td colspan="2" align="center">When a Model's evaluations are complete, a file is saved under the name 'model name, date, and evals run.txt.'</td>
+    <td colspan="2" align="center">5. When a Model's evaluations are complete, a file is saved under the name 'model name, date, and evals run.txt.'</td>
   </tr>
 </table>
 
