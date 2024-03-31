@@ -13,7 +13,7 @@ This repository is an assorted toolkit of python scripts and systems designed fo
 
 ### EasyPEFTGUIPro
 
-`EasyPeftGUIPro` is designed to simplify the process of fusing a language model with a compatible LoRA, then saving the resulting model to a user's directory of choice.
+`EasyPeftGUIPro` [aka easypeftguipro.py] is designed to simplify the process of fusing a language model with a compatible LoRA, then saving the resulting model to a user's directory of choice.
 
 #### Prerequisites
 
