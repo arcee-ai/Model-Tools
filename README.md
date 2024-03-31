@@ -2,6 +2,8 @@
 
 This repository is an assorted toolkit of python scripts and systems designed for model diagnostics, test & validation, as well overall convenience tools that focus on streamlining common operations.
 
+---
+
 ## Table of Contents
 - [EasyPEFTGUIPro](#easypeftguipro)
 - [More Tools...](#more-tools)
