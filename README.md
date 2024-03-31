@@ -44,11 +44,11 @@ Follow the steps below for evaluating your model using the Evaluation GUI.
 
 | Step | Screenshot | Description |
 |------|------------|-------------|
-| Model Selection | ![model select](media/evalgui/1_modelselect.png) | Select the model for evaluation. |
-| Evaluation Criteria Selection | ![evaluation select](media/evalgui/2_evalselect.png) | Choose the evaluation criteria. |
-| Evaluation Process | ![evaluation process](media/evalgui/3_evalprocess.png) | Monitor the evaluation process. |
-| Evaluation Saved Notification | ![eval saved notification](media/evalgui/4_evalnotification.png) | Notification upon successful evaluation save. |
-| Evaluation Results | ![eval results](media/evalgui/5_evalresults.png) | Review the final evaluation results. |
+| Select Model Folder | ![model select](media/evalgui/1_modelselect.png) |
+| Select Eval Sets | ![evaluation select](media/evalgui/2_evalselect.png) |
+| Evaluation Process Continues in CLI | ![evaluation process](media/evalgui/3_evalprocess.png) |
+| Notification Eval Results Saved | ![eval saved notification](media/evalgui/4_evalnotification.png) |
+| Example Evaluation Results | ![eval results](media/evalgui/5_evalresults.png) |
 
 
 
