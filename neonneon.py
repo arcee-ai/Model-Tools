@@ -144,7 +144,7 @@ def merge_model(genotype, models, model_storage_path, ps_genotype_length, dfs_ge
     logging.info("Model merging completed successfully.")
     return temp_dir
 
-def create_task_selection_window(models, model_folders, output_folder, ps_optimizer, dfs_optimizer, ps_genotype_length, dfs_genotype_length, ps_population_size, dfs_population_size, num_layers, num_models):
+def create_task_selection_window(models, model_folders, output_folder, ps_optimizer, dfs_optimizer, ps_genotype_length, dfs_genotype_length, ps_population_size, dfs_population_size):
     window = tk.Tk()
     window.title("Select Tasks To Optimize On")
     with open("test_options.yaml", 'r') as file:
@@ -181,8 +181,7 @@ def create_task_selection_window(models, model_folders, output_folder, ps_optimi
         window.destroy()
         #models = [load_model(folder) for folder in model_folders[:2]]
         run_evaluation(models, selected_tasks, int(batch_size.get()), int(limit.get()), load_in_4bit.get(), output_folder,
-                       ps_optimizer, dfs_optimizer, ps_genotype_length, dfs_genotype_length, ps_population_size, dfs_population_size,
-                       int(ps_generations.get()), int(dfs_generations.get()), num_layers, num_models)
+                       int(ps_population_size.get()), int(ps_generations.get()), int(dfs_population_size.get()), int(dfs_generations.get()))
     tk.Button(window, text="Evolve", command=on_evaluate_click).pack()
     window.mainloop()
 
@@ -222,8 +221,7 @@ class SerialEvaluationStrategy(EvaluationStrategyBase):
         return self.evaluate_genotypes([genotype], models)[0]
 
 def merge_ps_dfs(models, task_names, ps_optimizer, dfs_optimizer, ps_genotype_length, dfs_genotype_length,
-                 ps_population_size, dfs_population_size, ps_generations, dfs_generations, batch_size, limit, output_path,
-                 num_layers, num_models):
+                 ps_population_size, dfs_population_size, ps_generations, dfs_generations, batch_size, limit, output_path):
     try:
         # Initialize the evaluation strategy with the model configuration and task settings
         evaluation_strategy = SerialEvaluationStrategy(
@@ -232,14 +230,11 @@ def merge_ps_dfs(models, task_names, ps_optimizer, dfs_optimizer, ps_genotype_le
             ps_genotype_length=ps_genotype_length,
             dfs_genotype_length=dfs_genotype_length,
             batch_size=batch_size,
-            num_layers=num_layers,
-            num_models=num_models,
         )
 
         # Evolutionary strategy for Parameter Space
         ps_best_model, ps_scores = evolve_ps(
-            models, task_names, ps_population_size, ps_generations, batch_size, limit, evaluation_strategy,
-            ps_optimizer, ps_genotype_length, num_layers, num_models,
+            models, task_names, ps_population_size, ps_generations, batch_size, limit, evaluation_strategy
         )
         
         if ps_best_model is None:
@@ -251,8 +246,7 @@ def merge_ps_dfs(models, task_names, ps_optimizer, dfs_optimizer, ps_genotype_le
 
         # Evolutionary strategy for Data Flow Space
         dfs_best_model, dfs_scores = evolve_dfs(
-            models, task_names, dfs_population_size, dfs_generations, batch_size, limit, evaluation_strategy,
-            dfs_optimizer, dfs_genotype_length, num_layers, num_models,
+            models, task_names, dfs_population_size, dfs_generations, batch_size, limit, evaluation_strategy
         )
         
         if dfs_best_model is None:
@@ -271,64 +265,17 @@ def merge_ps_dfs(models, task_names, ps_optimizer, dfs_optimizer, ps_genotype_le
         raise
 
 # Supporting functions for PS and DFS evolution
-
-#def evolve_ps(models, task_names, population_size, generations, batch_size, limit, evaluation_strategy, ps_optimizer, ps_genotype_length, num_layers, num_models):
-#    ps_space = get_ps_config_space(max(model.num_layers for model in models))
-#    best_scores = {task_name: float('-inf') for task_name in task_names}
-#    best_model = None
-
-#    for _ in range(generations):
-#        genotypes = [ps_optimizer.ask() for _ in range(population_size)]
-#        scores = evaluation_strategy.evaluate_genotypes(genotypes, models)
-#        ps_optimizer.tell(list(zip(genotypes, scores)))
-#        for score, genotype in zip(scores, genotypes):
-#            if all(score > best_scores[task_name] for task_name in task_names):
-#                best_scores = {task_name: score for task_name in task_names}
-#                best_model = genotype  # Storing the best genotype
-
-#    return best_model, best_scores
-    
-def evolve_ps(models, task_names, population_size, generations, batch_size, limit, evaluation_strategy,
-              ps_optimizer, ps_genotype_length, num_layers, num_models):
+def evolve_ps(models, task_names, population_size, generations, batch_size, limit, evaluation_strategy):
+    ps_space = get_ps_config_space(max(model.num_layers for model in models))
+    ps_genotype_length = len(ps_space)
+    optimizer = CMA(mean=np.zeros(ps_genotype_length), sigma=1.0, population_size=population_size)
     best_scores = {task_name: float('-inf') for task_name in task_names}
     best_model = None
 
     for _ in range(generations):
-        genotypes = [ps_optimizer.ask() for _ in range(population_size)]
+        genotypes = [optimizer.ask() for _ in range(population_size)]
         scores = evaluation_strategy.evaluate_genotypes(genotypes, models)
-        ps_optimizer.tell(list(zip(genotypes, scores)))
-        for score, genotype in zip(scores, genotypes):
-            if all(score > best_scores[task_name] for task_name in task_names):
-                best_scores = {task_name: score for task_name in task_names}
-                best_model = genotype  # Storing the best genotype
-
-    return best_model, best_scores
-    
-#def evolve_dfs(models, task_names, population_size, generations, batch_size, limit, evaluation_strategy, dfs_optimizer, dfs_genotype_length, num_layers, num_models):
-#    dfs_space = get_dfs_config_space(max(model.num_layers for model in models), len(models), max(model.num_layers for model in models))
-#    best_scores = {task_name: float('-inf') for task_name in task_names}
-#    best_model = None
-
-#    for _ in range(generations):
-#        genotypes = [dfs_optimizer.ask() for _ in range(population_size)]
-#        scores = evaluation_strategy.evaluate_genotypes(genotypes, models)
-#        dfs_optimizer.tell(list(zip(genotypes, scores)))
-#        for score, genotype in zip(scores, genotypes):
-#            if all(score > best_scores[task_name] for task_name in task_names):
-#                best_scores = {task_name: score for task_name in task_names}
-#                best_model = genotype  # Storing the best genotype
-
-#    return best_model, best_scores
-
-def evolve_dfs(models, task_names, population_size, generations, batch_size, limit, evaluation_strategy,
-               dfs_optimizer, dfs_genotype_length, num_layers, num_models):
-    best_scores = {task_name: float('-inf') for task_name in task_names}
-    best_model = None
-
-    for _ in range(generations):
-        genotypes = [dfs_optimizer.ask() for _ in range(population_size)]
-        scores = evaluation_strategy.evaluate_genotypes(genotypes, models)
-        dfs_optimizer.tell(list(zip(genotypes, scores)))
+        optimizer.tell(list(zip(genotypes, scores)))
         for score, genotype in zip(scores, genotypes):
             if all(score > best_scores[task_name] for task_name in task_names):
                 best_scores = {task_name: score for task_name in task_names}
@@ -336,24 +283,28 @@ def evolve_dfs(models, task_names, population_size, generations, batch_size, lim
 
     return best_model, best_scores
 
-#def run_evaluation(models, selected_tasks, batch_size, limit, load_in_4bit, output_path, ps_optimizer, dfs_optimizer, ps_genotype_length, dfs_genotype_length, ps_population_size, dfs_population_size, ps_generations, dfs_generations, num_layers, num_models):
-#    try:
-#        merged_model, scores = merge_ps_dfs(models, selected_tasks, ps_optimizer, dfs_optimizer, ps_genotype_length, dfs_genotype_length, ps_population_size, dfs_population_size, ps_generations, dfs_generations, batch_size, limit, output_path, num_layers, num_models)
-#        logging.info(f"Best merged model saved to '{output_path}'. Scores: {scores}")
-#        df_scores = pd.DataFrame.from_dict(scores, orient='index', columns=['Score'])
-#        print("Scores DataFrame:")
-#        print(df_scores)
-#    except Exception as e:
-#        logging.error(f"Failed in run_evaluation: {e}")
-#        raise
+def evolve_dfs(models, task_names, population_size, generations, batch_size, limit, evaluation_strategy):
+    dfs_space = get_dfs_config_space(max(model.num_layers for model in models), len(models), max(model.num_layers for model in models))
+    dfs_genotype_length = len(dfs_space)
+    optimizer = CMA(mean=np.zeros(dfs_genotype_length), sigma=1.0, population_size=population_size)
+    best_scores = {task_name: float('-inf') for task_name in task_names}
+    best_model = None
+
+    for _ in range(generations):
+        genotypes = [optimizer.ask() for _ in range(population_size)]
+        scores = evaluation_strategy.evaluate_genotypes(genotypes, models)
+        optimizer.tell(list(zip(genotypes, scores)))
+        for score, genotype in zip(scores, genotypes):
+            if all(score > best_scores[task_name] for task_name in task_names):
+                best_scores = {task_name: score for task_name in task_names}
+                best_model = genotype  # Storing the best genotype
+
+    return best_model, best_scores
 
 def run_evaluation(models, selected_tasks, batch_size, limit, load_in_4bit, output_path,
-                   ps_optimizer, dfs_optimizer, ps_genotype_length, dfs_genotype_length, ps_population_size, dfs_population_size,
-                   ps_generations, dfs_generations, num_layers, num_models):
+                   ps_population_size, ps_generations, dfs_population_size, dfs_generations, ps_optimizer, dfs_optimizer):
     try:
-        merged_model, scores = merge_ps_dfs(models, selected_tasks, ps_optimizer, dfs_optimizer, ps_genotype_length, dfs_genotype_length,
-                                            ps_population_size, dfs_population_size, ps_generations, dfs_generations, batch_size, limit, output_path,
-                                            num_layers, num_models)
+        merged_model, scores = merge_ps_dfs(models, selected_tasks, ps_optimizer, dfs_optimizer, ps_genotype_length, dfs_genotype_length, ps_population_size, dfs_population_size, ps_generations, dfs_generations, batch_size, limit, output_path)
         logging.info(f"Best merged model saved to '{output_path}'. Scores: {scores}")
         df_scores = pd.DataFrame.from_dict(scores, orient='index', columns=['Score'])
         print("Scores DataFrame:")
@@ -373,8 +324,7 @@ def main():
         dfs_population_size = 50  # Example DFS population size
         ps_optimizer, dfs_optimizer, ps_genotype_length, dfs_genotype_length, num_layers, num_models = initialize_cma_es(models, ps_population_size, dfs_population_size)
         
-        create_task_selection_window(models, model_folders, output_folder, ps_optimizer, dfs_optimizer, ps_genotype_length, dfs_genotype_length,
-                                     ps_population_size, dfs_population_size, num_layers, num_models)
+        create_task_selection_window(models, model_folders, output_folder, ps_optimizer, dfs_optimizer, ps_genotype_length, dfs_genotype_length, ps_population_size, dfs_population_size)
         
     except Exception as e:
         logging.error(f"Error in main execution: {e}")
