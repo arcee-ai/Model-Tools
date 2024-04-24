@@ -4,7 +4,7 @@
 
 #### Contents
 
-- neonneon.py is the current Parameter Space (PS) and Data Flow Space DFS evolutionary merge effort under development.
+- neonneon.py is the current Parameter Space (PS) and Data Flow Space (DFS) evolutionary merge effort under development.
   - It is self-contained and includes GUI elements to simplify rapid iteration and troubleshooting.
   - The best practices and DFS effort is the main focus.
 
