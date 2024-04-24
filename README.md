@@ -9,4 +9,4 @@
   - This method will not supercede the existing PS evolutionary merge that has already been accomplished;
      - The DFS effort and best practices are the main focus; PS rework is an effort to incorporate both solutions in one.  
 
-[Based on the SakanaAI Paper]([https://github.com/EleutherAI/lm-evaluation-harness](https://arxiv.org/abs/2403.13187))
+[Based on the SakanaAI Paper](https://arxiv.org/abs/2403.13187)
